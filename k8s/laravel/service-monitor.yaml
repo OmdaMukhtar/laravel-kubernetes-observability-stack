@@ -1,0 +1,23 @@
+# apiVersion: monitoring.coreos.com/v1
+# kind: ServiceMonitor
+# metadata:
+#   name: laravel-api
+#   namespace: monitoring
+#   labels:
+#     release: central-monitoring
+#     app.kubernetes.io/instance: central-monitoring
+#     app.kubernetes.io/managed-by: Helm
+#     app.kubernetes.io/name: laravel-api
+#     app.kubernetes.io/component: metrics
+# spec:
+#   namespaceSelector:
+#     matchNames:
+#       - laravel-prod
+#   selector:
+#     matchLabels:
+#       app: laravel-api
+#   jobLabel: app
+#   endpoints:
+#     - port: metrics
+#       path: /metrics
+#       interval: 15s
