@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: laravel-prod
+spec:
+  serviceName: mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-secrets
+                  key: DB_DATABASE
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-secrets
+                  key: DB_USERNAME
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-secrets
+                  key: DB_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-secrets
+                  key: MYSQL_ROOT_PASSWORD
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc

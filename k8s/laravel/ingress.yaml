@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: laravel-ingress
+  namespace: laravel-prod
+  annotations:
+    cert-manager.io/cluster-issuer: my-ca-issuer
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/ssl-redirect: 'true'
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - laravel-api.example.com
+      secretName: laravel-api-tls
+  rules:
+    - host: laravel-api.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: laravel-service
+                port:
+                  number: 80

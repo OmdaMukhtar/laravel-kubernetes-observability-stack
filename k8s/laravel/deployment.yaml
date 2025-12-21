@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-api
+  namespace: laravel-prod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: laravel-api
+  template:
+    metadata:
+      labels:
+        app: laravel-api
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: laravel
+          resources:
+            requests:
+              memory: '128Mi'
+              cpu: '250m'
+            limits:
+              memory: '512Mi'
+              cpu: '500m'
+          image: 18474542/laravel-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: laravel-config
+            - secretRef:
+                name: laravel-secrets
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: laravel-nginx-config
