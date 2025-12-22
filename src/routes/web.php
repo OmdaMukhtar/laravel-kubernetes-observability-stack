@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Prometheus\RenderTextFormat;
+use Prometheus\CollectorRegistry;
+use Prometheus\Storage\InMemory;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/slow', function () {
+    usleep(rand(200000, 1500000)); // 200ms–1.5s
+    return response()->json(['status' => 'slow ok']);
+});
+
+Route::get('/error', function () {
+    abort(500);
+});
+
+Route::get('/metrics', [\App\Http\Middleware\PrometheusMiddleware::class, 'metrics']);
+
 
 Route::get('/', function () {
     return view('welcome');
