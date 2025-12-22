@@ -1,15 +1,15 @@
 # Stage 0: Frontend build
 FROM node:20 AS frontend
 WORKDIR /app
-COPY app/package*.json app/vite.config.js ./
+COPY src/package*.json src/vite.config.js ./
 RUN npm install
-COPY app/ .
+COPY src/ .
 RUN npm run build
 
 # Stage 1: Composer dependencies
 FROM composer:2 AS vendor
 WORKDIR /app
-COPY app/ /app
+COPY src/ /app
 RUN composer install --no-dev --optimize-autoloader
 
 # Stage 2: PHP-FPM + Nginx
@@ -25,13 +25,16 @@ RUN apt-get update && apt-get install -y \
   libzip-dev \
   zip \
   curl \
+  vim \
+  && pecl install redis \
+  && docker-php-ext-enable redis \
   && docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www
 
 # Copy Laravel app
-COPY app/ /var/www
+COPY src/ /var/www
 
 # Copy vendor from stage
 COPY --from=vendor /app/vendor /var/www/vendor

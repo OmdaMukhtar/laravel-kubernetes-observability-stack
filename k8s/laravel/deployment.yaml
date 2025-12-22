@@ -24,7 +24,7 @@ spec:
             limits:
               memory: '512Mi'
               cpu: '500m'
-          image: 18474542/laravel-api:latest
+          image: 18474542/laravel-api:metrics
           imagePullPolicy: Always
           ports:
             - containerPort: 80
