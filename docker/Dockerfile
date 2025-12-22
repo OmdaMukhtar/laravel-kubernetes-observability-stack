@@ -37,10 +37,10 @@ WORKDIR /var/www
 COPY src/ /var/www
 
 # Copy vendor from stage
-COPY --from=vendor /src/vendor /var/www/vendor
+COPY --from=vendor /app/vendor /var/www/vendor
 
 # Copy compiled frontend assets
-COPY --from=frontend /src/public/build /var/www/public/build
+COPY --from=frontend /app/public/build /var/www/public/build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www \
