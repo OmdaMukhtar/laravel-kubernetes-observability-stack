@@ -4,7 +4,7 @@ metadata:
   name: laravel-config
   namespace: laravel-prod
 data:
-  APP_NAME: K8SLaravel
+  APP_NAME: K8S-Laravel
   APP_ENV: production
   APP_DEBUG: 'true'
   APP_URL: https://laravel-api.example.com
@@ -39,7 +39,7 @@ data:
   MEMCACHED_HOST: 127.0.0.'1'
 
   REDIS_CLIENT: 'phpredis'
-  REDIS_HOST: 127.0.0.'1'
+  REDIS_HOST: redis-service
   REDIS_PASSWORD: 'null'
   REDIS_PORT: '6379'
 
@@ -50,6 +50,6 @@ data:
   MAIL_USERNAME: 'null'
   MAIL_PASSWORD: 'null'
   MAIL_FROM_ADDRESS: 'hello@example.com'
-  MAIL_FROM_NAME: K8SLaravel
+  MAIL_FROM_NAME: K8S-Laravel
 
-  VITE_APP_NAME: K8SLaravel
+  VITE_APP_NAME: K8S-Laravel
