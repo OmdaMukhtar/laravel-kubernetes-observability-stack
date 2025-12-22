@@ -17,6 +17,15 @@ use Prometheus\Storage\InMemory;
 |
 */
 
+Route::get('/slow', function () {
+    usleep(rand(200000, 1500000)); // 200ms–1.5s
+    return response()->json(['status' => 'slow ok']);
+});
+
+Route::get('/error', function () {
+    abort(500);
+});
+
 Route::get('/metrics', [\App\Http\Middleware\PrometheusMiddleware::class, 'metrics']);
 
 

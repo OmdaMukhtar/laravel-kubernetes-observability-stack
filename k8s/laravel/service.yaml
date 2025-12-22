@@ -3,9 +3,14 @@ kind: Service
 metadata:
   name: laravel-service
   namespace: laravel-prod
+  labels:
+    app: laravel-api
+    app.kubernetes.io/instance: central-monitoring
+    app.kubernetes.io/name: laravel-api
 spec:
   selector:
     app: laravel-api
   ports:
-    - port: 80
+    - name: metrics
+      port: 80
       targetPort: 80
