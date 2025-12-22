@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Prometheus\RenderTextFormat;
+use Prometheus\CollectorRegistry;
+use Prometheus\Storage\InMemory;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/metrics', [\App\Http\Middleware\PrometheusMiddleware::class, 'metrics']);
+
 
 Route::get('/', function () {
     return view('welcome');

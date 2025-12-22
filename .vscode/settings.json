@@ -1,0 +1,81 @@
+{
+  /* ==============================
+     Font & UI Scaling
+     ============================== */
+  "editor.fontSize": 17,
+  "editor.lineHeight": 20,
+  "editor.fontFamily": "Fira Code, JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "window.zoomLevel": 0.99,
+  "window.titleBarStyle": "custom",
+  /* ==============================
+     Editor Comfort
+     ============================== */
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.renderWhitespace": "selection",
+  "editor.renderControlCharacters": false,
+  "editor.smoothScrolling": true,
+  "editor.scrollBeyondLastLine": false,
+  /* ==============================
+     Tabs & Layout
+     ============================== */
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.showTabs": "multiple",
+  "workbench.editor.labelFormat": "short",
+  /* ==============================
+     Sidebar & Panels
+     ============================== */
+  "workbench.sideBar.location": "left",
+  // "workbench.activityBar.location": "left",
+  "workbench.statusBar.visible": true,
+  /* ==============================
+     Files & Explorer
+     ============================== */
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  /* ==============================
+     Formatting & Indentation
+     ============================== */
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  /* ==============================
+     Search
+     ============================== */
+  "search.smartCase": true,
+  "search.useIgnoreFiles": true,
+  /* ==============================
+     Terminal
+     ============================== */
+  "terminal.integrated.fontSize": 17,
+  "terminal.integrated.lineHeight": 1.1,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.scrollback": 10000,
+  /* ==============================
+     Git
+     ============================== */
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  /* ==============================
+     JSON / YAML
+     ============================== */
+  "json.format.enable": true,
+  "yaml.validate": true,
+  /* ==============================
+     Performance
+     ============================== */
+  "editor.largeFileOptimizations": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/node_modules/**": true,
+    "**/vendor/**": true
+  }
+}
