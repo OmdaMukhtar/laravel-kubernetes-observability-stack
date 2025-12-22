@@ -1,15 +1,15 @@
 # Stage 0: Frontend build
 FROM node:20 AS frontend
 WORKDIR /app
-COPY app/package*.json app/vite.config.js ./
+COPY src/package*.json src/vite.config.js ./
 RUN npm install
-COPY app/ .
+COPY src/ .
 RUN npm run build
 
 # Stage 1: Composer dependencies
 FROM composer:2 AS vendor
 WORKDIR /app
-COPY app/ /app
+COPY src/ /app
 RUN composer install --no-dev --optimize-autoloader
 
 # Stage 2: PHP-FPM + Nginx
@@ -34,13 +34,13 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /var/www
 
 # Copy Laravel app
-COPY app/ /var/www
+COPY src/ /var/www
 
 # Copy vendor from stage
-COPY --from=vendor /app/vendor /var/www/vendor
+COPY --from=vendor /src/vendor /var/www/vendor
 
 # Copy compiled frontend assets
-COPY --from=frontend /app/public/build /var/www/public/build
+COPY --from=frontend /src/public/build /var/www/public/build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www \
