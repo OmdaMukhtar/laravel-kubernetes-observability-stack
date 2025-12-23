@@ -25,8 +25,7 @@ A production-grade Laravel API deployed on Kubernetes, designed and implemented 
 ---
 
 ## Architecture Overview
-![alt text](daigram.png)
-
+![alt text](image-1.png)
 ### High-Level Flow
 - Users access the system through a public LoadBalancer (MetalLB)
 - Traefik Ingress Controller routes traffic
@@ -41,7 +40,7 @@ A production-grade Laravel API deployed on Kubernetes, designed and implemented 
 ---
 
 ## Technology Stack
----------------------------------------------------
+
 | Layer             | Technology                  |
 | ----------------- | --------------------------- |
 | Container Runtime | Docker                      |
