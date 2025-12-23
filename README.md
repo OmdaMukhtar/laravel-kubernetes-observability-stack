@@ -1,4 +1,4 @@
-## Deploy Laravel Applicaiton on K8S Cluster
+## Laravel K8S Observability Stack
 
 ![alt text](daigram.png)
 ---
