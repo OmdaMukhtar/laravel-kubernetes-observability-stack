@@ -206,3 +206,4 @@ This ensures:
 - Chaos testing
 - Distributed tracing (Tempo / Jaeger)
 
+![alt text](image.png)
