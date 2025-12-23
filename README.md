@@ -1,6 +1,6 @@
 ## Deploy Laravel Applicaiton on K8S Cluster
 
-
+![alt text](daigram.png)
 ---
 ## Project Tree
 ```
