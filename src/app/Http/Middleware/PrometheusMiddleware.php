@@ -57,7 +57,7 @@ class PrometheusMiddleware
                 'http_request_duration_seconds',
                 'HTTP request duration in seconds',
                 ['method', 'route', 'status'],
-                [0.1, 0.3, 0.5, 1, 1.5, 2, 3, 5]
+                [0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1, 1.5, 2, 3, 5]
             );
         }
 
