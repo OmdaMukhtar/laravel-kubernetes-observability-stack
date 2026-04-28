@@ -43,4 +43,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+# Add health check route for Kubernetes
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok']);
+});
+
+
 require __DIR__.'/auth.php';

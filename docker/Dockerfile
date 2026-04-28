@@ -46,7 +46,13 @@ COPY --from=frontend /app/public/build /var/www/public/build
 RUN chown -R www-data:www-data /var/www \
   && chmod -R 755 /var/www/storage
 
+# Set Nginx configuration to fix redndered html pages on laravel app
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+
 EXPOSE 80
+
+# Add a health check to use by POD in Kubernetes
+HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost/health || exit 1
 
 # Start PHP-FPM + Nginx
 CMD ["sh", "-c", "php-fpm & nginx -g 'daemon off;'"]
